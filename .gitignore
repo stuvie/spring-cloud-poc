@@ -1,0 +1,16 @@
+target/
+bin/
+.settings/
+.classpath
+.project
+node_modules/
+coverage/
+.idea/
+.sonar/
+public/components
+.sass-cache
+*.css
+gunit.xml
+*.log
+robot-boots/batch-config.properties
+robot-boots/mysql.properties
