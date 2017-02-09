@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class CatalogServiceApplication {
+public class PromotionsServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CatalogServiceApplication.class, args);
+		SpringApplication.run(PromotionsServiceApplication.class, args);
 	}
 	
 	@Bean
@@ -35,34 +35,33 @@ public class CatalogServiceApplication {
 
             rr.deleteAll();
 
-            Arrays.asList("Macbook Pro,Mac Mini,Magic Mouse,Apple TV".split(","))
-                    .forEach(x -> rr.save(new Catalog(x)));
+            Arrays.asList("Buy One Get One Free,Free Shipping on All Orders Over $50".split(","))
+                    .forEach(x -> rr.save(new Promotion(x)));
 
             rr.findAll().forEach(System.out::println);
         };
     }
-
 }
 
 @RepositoryRestResource
-interface ReservationRepository extends JpaRepository<Catalog, Long> {
+interface ReservationRepository extends JpaRepository<Promotion, Long> {
 
     @RestResource(path = "by-name")
-    Collection<Catalog> findByName(@Param("name") String name);
+    Collection<Promotion> findByName(@Param("name") String name);
 }
 
 @Entity
-class Catalog {
+class Promotion {
 	@Id
     @GeneratedValue
     private Long id;
 	
 	private String name;
 
-	Catalog() {
+	Promotion() {
     }
 
-    public Catalog(String name) {
+    public Promotion(String name) {
         this.name = name;
     }
     
@@ -76,7 +75,7 @@ class Catalog {
 
 	@Override
 	public String toString() {
-		return "Catalog [id=" + id + ", name=" + name + "]";
+		return "Promotion [id=" + id + ", name=" + name + "]";
 	}
 }
 
@@ -92,4 +91,3 @@ class MessageRestController {
         return this.message;
     }
 }
-
