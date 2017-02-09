@@ -1,0 +1,37 @@
+all projects created with Spring Initializr
+    <artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.1.RELEASE</version>
+
+common dependencies: actuator, dev-tools
+
+config-server:
+  create GIT repo for config, clone it
+  in ConfigServerApplication, add @EnableConfigServer
+  in application.properties, set server.port=8888, spring.cloud.config.server.git.uri=<dir>
+  start config-server
+
+tracing-server: zipkin
+  dependencies: config client, eureka discovery, zipkin server, zipkin UI
+  in TracingServerApplication, add @EnableZipkinServer @EnableDiscoveryClient
+  in bootstrap.properties, set spring.application.name=<xx>, spring.cloud.config.uri=http://localhost:8888
+
+discovery-server: eureka
+  dependencies: config client, eureka server
+  in DiscoveryServerApplication, add @EnableEurekaServer
+
+for all microservices:
+  dependencies: config client, eureka discovery, web
+  in Application, add @EnableDiscoveryClient to register with eureka server
+  in bootstrap.properties, set spring.application.name=<xx>, spring.cloud.config.uri=http://localhost:8888
+  in config project, must create a xx-service.properties and commit it
+
+catalog-service: first application microservice
+  dependencies: config client, eureka discovery, zipkin client, H2, JPA, rest repositories, web
+  in CatalogServiceApplication, add @EnableDiscoveryClient
+
+commerce-website:
+  dependencies: config client, eureka discovery, web, hystrix, zuul, feign, hateoas
+  in CommerceWebsiteApplication, add @EnableZuulProxy @EnableCircuitBreaker @EnableDiscoveryClient
+
+problems to resolve:
+distributed tracing with zipkin/sleuth is not working, had to disable it in catalog-service/pom.xml
