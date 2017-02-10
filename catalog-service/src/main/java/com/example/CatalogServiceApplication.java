@@ -35,7 +35,7 @@ public class CatalogServiceApplication {
 
             rr.deleteAll();
 
-            Arrays.asList("Macbook Pro,Mac Mini,Magic Mouse,Apple TV".split(","))
+            Arrays.asList("$1549  Macbook Pro,$599  Mac Mini,$100  Magic Mouse,$199  Apple TV".split(","))
                     .forEach(x -> rr.save(new Catalog(x)));
 
             rr.findAll().forEach(System.out::println);
