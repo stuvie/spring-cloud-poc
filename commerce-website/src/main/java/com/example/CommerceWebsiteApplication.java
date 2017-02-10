@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -46,6 +47,9 @@ public class CommerceWebsiteApplication {
 class HomeController {
 	private final RestTemplate restTemplate;
 	
+	@Value("${message}")
+	private String message;
+	
 	@Autowired
 	public HomeController(@LoadBalanced RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
@@ -64,6 +68,7 @@ class HomeController {
 			.collect(Collectors.toList());
 		
 		model.addAttribute("inventory", inventory);
+		model.addAttribute("message", message);
 		return "home";
 	}
 }
