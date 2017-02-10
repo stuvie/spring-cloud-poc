@@ -2,6 +2,7 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +39,32 @@ public class CommerceWebsiteApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CommerceWebsiteApplication.class, args);
+	}
+}
+
+@Controller
+class HomeController {
+	private final RestTemplate restTemplate;
+	
+	@Autowired
+	public HomeController(@LoadBalanced RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+	
+	@RequestMapping("/")
+	public String loadHome(Model model){
+		List<String> inventory = restTemplate.exchange("http://catalog-service/catalogs",
+				HttpMethod.GET, null,
+				new ParameterizedTypeReference<Resources<Promotion>>() {
+				})
+			.getBody()
+			.getContent()
+			.stream()
+			.map(Promotion::getName)
+			.collect(Collectors.toList());
+		
+		model.addAttribute("inventory", inventory);
+		return "home";
 	}
 }
 
