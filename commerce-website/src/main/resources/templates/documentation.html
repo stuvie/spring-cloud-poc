@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>about this website</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>	
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-9">
+			<h1>about this website</h1>
+
+			<h4>This suite of 8 applications were all built on spring cloud</h4>
+			
+			<ol>
+				<li>config-server | spring-cloud-config provides centralized configuration for all other components</li>
+				<li>registration and discovery server | eureka provides a service registry, to support fault tolerance and load balancing</li>
+				<li>tracing server | zipkin provides a way to trace and analyze cascaded web service requests</li>
+				<li>commerce-website is the user-facing public website</li>
+				<li>promotions-service | a microservice for in-store promotions, using H2 database</li>
+				<li>promotions-service-v2 | a microservice for in-store promotions, using H2 database</li>
+				<li>catalog-service | a microservice for the items we sell, using H2 database</li>
+				<li>slow-downstream-service | a slow microservice to illustrate distributed tracing of slow requests</li>
+			</ol>
+			
+			<p></p>
+			<h4>Technologies used</h4>
+			
+			<ol>
+				<li>spring-cloud-config server</li>
+				<li>eureka service registry</li>
+				<li>zipkin</li>
+				<li>hystrix circuit breaker - to provide fallback behavior if a service is down</li>
+				<li>zuul proxy - to proxy requests from the website to downstream services </li>
+				<li>spring load balancing between the 2 versions of promotions-service</li>
+				<li>spring actuator - used in every application to support healthcheck and monitoring</li>
+				<li>spring-jpa, spring-data-rest, spring-mvc, spring-boot, H2 database, etc.</li>
+			</ol>
+			
+			<p></p>
+			
+			<a href="admin">admin portal</a><br/>
+		    <a href="/">back to home page</a>
+    	</div>
+    	<div class="col-md-2"></div>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			console.log( "admin console ready!" );
+		});
+	</script>
+	
+</body>
+</html>

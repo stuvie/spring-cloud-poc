@@ -83,6 +83,12 @@ class HomeController {
 		model.addAttribute("message", message);
 		return "admin";
 	}
+	
+	@RequestMapping("/documentation")
+	public String loadDocumentation(Model model){
+		model.addAttribute("message", message);
+		return "documentation";
+	}
 }
 
 @RestController
