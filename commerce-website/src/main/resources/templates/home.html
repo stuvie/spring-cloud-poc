@@ -19,9 +19,35 @@
 		    		
 		    	</tr>
 		    </table>
+		    <h2>Promotions:</h2>
+		    <ul id="promotions">
+		    </ul>
     	</div>
     	<div class="col-md-4"></div>
 	</div>
 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			console.log( "ready!" );
+			$.ajax({
+				url:'/promotions/names',
+				type:'GET',
+				dataType:'json',
+				error: function(data) {
+					console.log('error: ' + JSON.stringify(data));
+					//alert('error: ' + JSON.stringify(data));
+				},
+				success: function(data) {
+					$(data).each(function(index, item) {
+						$("#promotions").append(
+					        $(document.createElement('li')).text(item)
+					    );
+					});
+				}
+			});
+		});
+	</script>
+	
 </body>
 </html>
