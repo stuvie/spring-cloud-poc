@@ -77,6 +77,12 @@ class HomeController {
 		model.addAttribute("message", message);
 		return "home";
 	}
+	
+	@RequestMapping("/admin")
+	public String loadAdmin(Model model){
+		model.addAttribute("message", message);
+		return "admin";
+	}
 }
 
 @RestController

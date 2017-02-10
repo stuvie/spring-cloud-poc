@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Portal</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>	
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-4">
+			<h1>Admin Portal</h1>
+
+			<p th:text="${message}"></p>
+			
+			<ul>
+				<li><a href="http://localhost:8888/health" target='_blank'>configuration server healthcheck | spring-cloud-config</a></li>
+				<li><a href="http://localhost:8761/" target='_blank'>registration and discovery server | eureka</a></li>
+				<li><a href="http://localhost:9411/" target='_blank'>tracing server | zipkin</a></li>
+				<li><a href="http://localhost:8761/health" target='_blank'>eureka healthcheck</a></li>
+				<li><a href="http://localhost:9411/health" target='_blank'>zipkin healthcheck</a></li>
+				<li><a href="http://localhost:8000/health" target='_blank'>website healthcheck</a></li>
+				<li><a href="http://localhost:8002/health" target='_blank'>promotions-service healthcheck</a></li>
+			</ul>
+			
+		    <a href="/">back to home page</a>
+    	</div>
+    	<div class="col-md-6"></div>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			console.log( "admin console ready!" );
+		});
+	</script>
+	
+</body>
+</html>
