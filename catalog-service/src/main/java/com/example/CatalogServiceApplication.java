@@ -2,11 +2,13 @@ package com.example;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,8 +20,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -42,6 +49,34 @@ public class CatalogServiceApplication {
         };
     }
 
+}
+
+@Controller
+@RequestMapping("/catalog")
+class CatalogController {
+	@Autowired
+    private ReservationRepository repository;
+	
+	@Autowired
+	RestTemplate restTemplate;
+	
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<Collection<Catalog>> getAllCatalogEntries(){
+    	
+		ResponseEntity<String> clearance = restTemplate.getForEntity("http://localhost:8004/clearance/101/items", String.class);
+		Catalog saleItem = new Catalog(clearance.getBody().toString());
+		saleItem.setId(101L);
+    	
+    	List<Catalog> catalog = repository.findAll();
+    	catalog.add(saleItem);
+    	
+        return new ResponseEntity<>((Collection<Catalog>) catalog, HttpStatus.OK);
+    }
 }
 
 @RepositoryRestResource
@@ -68,6 +103,10 @@ class Catalog {
     
     public Long getId() {
 		return id;
+	}
+    
+    public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {

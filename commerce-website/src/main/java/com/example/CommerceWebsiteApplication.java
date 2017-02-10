@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,7 +70,10 @@ class HomeController {
 			.map(Promotion::getName)
 			.collect(Collectors.toList());
 		
+		ResponseEntity<String> clearance = restTemplate.getForEntity("http://catalog-service/catalog", String.class);
+		
 		model.addAttribute("inventory", inventory);
+		model.addAttribute("clearance", clearance);
 		model.addAttribute("message", message);
 		return "home";
 	}
