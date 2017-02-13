@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Actuator Links</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></link>	
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-4">
+			<h1>Spring Boot Actuator Links</h1>
+
+			<p th:text="${message}"></p>
+			
+			<ul>
+				<li><a href="/health">health check</a></li>
+				<li><a href="/info">info</a></li>
+				<li><a href="/metrics">performance metrics</a></li>
+				<li><a href="/env">environment variables</a></li>
+				<li><a href="/mappings">url mappings</a></li>
+				<li><a href="/features">features enabled/disabled</a></li>
+				<li><a href="/beans">spring beans</a></li>
+				<li><a href="/trace">trace of recent url requests</a></li>
+				<li><a href="/service-registry/instance-status">service-registry/instance-status</a></li>
+				<li><a href="/actuator">actuator</a></li>
+				<li><a href="/routes">routes</a></li>
+				<li><a href="/dump">dump</a></li>
+				<li><a href="/heapdump">download a heapdump</a></li>
+			</ul>
+			
+			<form action="/refresh" method="post">
+				<input type="submit" value="Refresh config"/>
+			</form>
+			<form action="/restart" method="post">
+				<input type="submit" value="Restart application"/>
+			</form>
+			<p></p>
+			
+			<a href="admin">admin portal</a><br/>
+			<a href="documentation">about this website</a><br/>
+		    <a href="/">back to home page</a>
+    	</div>
+    	<div class="col-md-6"></div>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+		});
+	</script>
+	
+</body>
+</html>

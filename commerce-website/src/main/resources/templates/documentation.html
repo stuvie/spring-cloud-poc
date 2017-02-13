@@ -13,7 +13,6 @@
 			<h1>about this website</h1>
 
 			<h4>This suite of 9 applications were all built on spring cloud</h4>
-			
 			<ol>
 				<li>config-server | spring-cloud-config provides centralized configuration for all other components</li>
 				<li>registration and discovery server | eureka provides a service registry, to support fault tolerance and load balancing</li>
@@ -26,10 +25,18 @@
 				<li>slow-downstream-service | a slow microservice to illustrate distributed tracing of slow requests</li>
 			</ol>
 			
-			<p></p>
-			<h4>Technologies used</h4>
+			<h4>Features to Demonstrate</h4>
+			<ul>
+				<li>spring actuator - healthchecks and much more</li>
+				<li>distributed tracing of cascaded service calls with zipkin</li>
+				<li>automatic registration of services as they come online, via eureka service discovery</li>
+				<li>load balancing between 2 versions of promotions-service</li>
+				<li>hystrix circuit-breaker fallback when the promotions-service is down</li>
+				<li>website configuration refresh (edit config/website.properties, then click 'Refresh website config' button on admin portal)</li>
+			</ul>
 			
-			<ol>
+			<h4>Technologies used</h4>
+			<ul>
 				<li>spring-cloud-config server</li>
 				<li>eureka service registry</li>
 				<li>zipkin</li>
@@ -38,21 +45,20 @@
 				<li>spring load balancing between the 2 versions of promotions-service</li>
 				<li>spring actuator - used in every application to support healthcheck and monitoring</li>
 				<li>spring-jpa, spring-data-rest, spring-mvc, spring-boot, H2 database, etc.</li>
-			</ol>
+			</ul>
 			
-			<p></p>
 			<h4>Future Work</h4>
-			
-			<ol>
+			<ul>
 				<li>spring-cloud-security</li>
 				<li>a monitoring dashboard</li>
 				<li>more documentation on how this was built</li>
 				<li>lots more ....</li>
-			</ol>
+			</ul>
 			
 			<p></p>
 			
 			<a href="admin">admin portal</a><br/>
+			<a href="actuatorlinks">actuator links</a><br/>
 		    <a href="/">back to home page</a>
     	</div>
     	<div class="col-md-2"></div>

@@ -84,6 +84,12 @@ class HomeController {
 		return "admin";
 	}
 	
+	@RequestMapping("/actuatorlinks")
+	public String loadActuatorLinks(Model model){
+		model.addAttribute("message", message);
+		return "actuator";
+	}
+	
 	@RequestMapping("/documentation")
 	public String loadDocumentation(Model model){
 		model.addAttribute("message", message);
