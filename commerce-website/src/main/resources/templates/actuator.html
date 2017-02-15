@@ -12,22 +12,28 @@
 		<div class="col-md-4">
 			<h1>Spring Boot Actuator Links</h1>
 
-			<p th:text="${message}"></p>
+			<p>message: <span th:text="${message}"></span></p>
 			
 			<ul>
 				<li><a href="/health">health check</a></li>
 				<li><a href="/info">info</a></li>
 				<li><a href="/metrics">performance metrics</a></li>
 				<li><a href="/env">environment variables</a></li>
+				<li><a href="/autoconfig">auto-config report</a></li>
+				<li><a href="/configprops">collated list of all @ConfigurationProperties</a></li>
 				<li><a href="/mappings">url mappings</a></li>
-				<li><a href="/features">features enabled/disabled</a></li>
 				<li><a href="/beans">spring beans</a></li>
-				<li><a href="/trace">trace of recent url requests</a></li>
-				<li><a href="/service-registry/instance-status">service-registry/instance-status</a></li>
+				<li><a href="/trace">trace of the last 100 HTTP requests</a></li>
 				<li><a href="/actuator">actuator</a></li>
+				<li><a href="/dump">performs a thread dump</a></li>
+				<li><a href="/heapdump">download a compressed hprof heap dump file</a></li>
+			</ul>
+			
+			<h1>Spring Cloud Links</h1>
+			<ul>
+				<li><a href="/features">features enabled/disabled</a></li>
+				<li><a href="/service-registry/instance-status">service-registry/instance-status</a></li>
 				<li><a href="/routes">routes</a></li>
-				<li><a href="/dump">dump</a></li>
-				<li><a href="/heapdump">download a heapdump</a></li>
 			</ul>
 			
 			<form action="/refresh" method="post">
